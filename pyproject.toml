@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "steadystate"
+version = "0.1.0"
+description = "A project that simulates the convergence of some Markov Chains."
+authors = ["Lucian Ursu <lucian.ursu@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numpy = "^2.2.2"
+matplotlib = "^3.10.0"
+scipy = "^1.15.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
