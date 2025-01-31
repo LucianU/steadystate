@@ -71,12 +71,13 @@ print(f"Speed estimate for P (1 - |λ2|): {speed_P}")
 print(f"Speed estimate for Q (1 - |λ2|): {speed_Q}")
 
 # Plot error decay
-plt.figure(figsize=(8, 5))
-plt.plot(N_vals, errors_P, label=f"Error for P (r={r_P:.3f})", marker='o')
-plt.plot(N_vals, errors_Q, label=f"Error for Q (r={r_Q:.3f})", marker='x', linestyle='--')
-plt.xlabel("Steps (N)")
-plt.ylabel("L1 Error ||P^N P0 - π||")
-plt.yscale("log")  # Log scale for better visualization
-plt.legend()
-plt.title("Convergence Speed of Markov Chains")
-plt.show()
+def plot():
+    plt.figure(figsize=(8, 5))
+    plt.plot(N_vals, errors_P, label=f"Error for P (r={r_P:.3f})", marker='o')
+    plt.plot(N_vals, errors_Q, label=f"Error for Q (r={r_Q:.3f})", marker='x', linestyle='--')
+    plt.xlabel("Steps (N)")
+    plt.ylabel("L1 Error ||P^N P0 - π||")
+    plt.yscale("log")  # Log scale for better visualization
+    plt.legend()
+    plt.title("Convergence Speed of Markov Chains")
+    plt.show()
