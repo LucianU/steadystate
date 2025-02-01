@@ -54,8 +54,6 @@ N_Q, errors_Q = compute_convergence_speed(Q, P0, pi_Q)
 
 print(f"Convergence steps for P: {N_P}")
 print(f"Convergence steps for Q: {N_Q}")
-print("Last 10 errors for P:", errors_P[-10:])
-print("Last 10 errors for Q:", errors_Q[-10:])
 
 # Plot convergence error over time
 def plot_convergence_error():
