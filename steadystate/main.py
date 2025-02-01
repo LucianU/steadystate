@@ -41,7 +41,7 @@ print(f"Stationary distribution for Q: {pi_Q}")
 def compute_convergence_speed(P, P0, pi, threshold=1e-4, max_steps=5000):
     errors = []
     for N in range(1, max_steps + 1):
-        PN_P0 = np.linalg.matrix_power(P.T, N) @ P0.T  # Compute P^N * P0
+        PN_P0 = np.linalg.matrix_power(P.T, N) @ P0  # Compute P^N * P0
         error = np.sum(np.abs(PN_P0 - pi))  # Compute L1 norm
         errors.append(error)
         if error < threshold:
