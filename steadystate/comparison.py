@@ -1,37 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Define transition matrices P and Q
-P = np.array([
-    [0.9, 0.1],
-    [0.7, 0.3]
-])
+from .transitions import P, Q
+from .tools import get_stationary_dist, error_decay
 
-Q = np.array([
-    [0.95, 0.05],
-    [0.01, 0.99]
-])
-
-# Function to compute stationary distribution
-def compute_stationary_distribution(P):
-    eigvals, eigvecs = np.linalg.eig(P.T)  # Eigen decomposition
-    stationary = eigvecs[:, np.isclose(eigvals, 1)]  # Find eigenvector for eigenvalue 1
-    stationary = stationary[:, 0].real
-    stationary /= stationary.sum()  # Normalize
-    return stationary
 
 # Compute stationary distributions
-pi_P = compute_stationary_distribution(P)
-pi_Q = compute_stationary_distribution(Q)
-
-# Function to compute error decay
-def compute_error_decay(P, P0, pi, max_steps=1000):
-    errors = []
-    for N in range(1, max_steps + 1):
-        PN_P0 = P0 @ np.linalg.matrix_power(P, N)  # Corrected propagation order
-        error = np.sum(np.abs(PN_P0 - pi))  # Compute L1 norm
-        errors.append(error)
-    return np.array(errors)
+pi_P = get_stationary_dist(P)
+pi_Q = get_stationary_dist(Q)
 
 # Define different initial distributions
 initial_distributions = {
@@ -47,8 +23,8 @@ max_steps = 500
 # Run for each P0 choice
 results = {}
 for label, P0 in initial_distributions.items():
-    errors_P = compute_error_decay(P, P0, pi_P, max_steps)
-    errors_Q = compute_error_decay(Q, P0, pi_Q, max_steps)
+    errors_P = error_decay(P, P0, pi_P, max_steps)
+    errors_Q = error_decay(Q, P0, pi_Q, max_steps)
     results[label] = (errors_P, errors_Q)
 
 # Plot results
@@ -64,3 +40,4 @@ plt.yscale("log")  # Log scale for better visualization
 plt.legend()
 plt.title("Effect of Different Initial Distributions on Convergence")
 plt.show()
+
