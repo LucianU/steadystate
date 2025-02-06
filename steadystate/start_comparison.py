@@ -6,7 +6,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from .transitions import P, Q
-from .tools import get_stationary_dist, error_decay
+
+from .convergence import convergence
+from .dist import get_stationary_dist
 
 
 # Compute stationary distributions
@@ -27,21 +29,23 @@ max_steps = 500
 # Run for each P0 choice
 results = {}
 for label, P0 in initial_distributions.items():
-    errors_P = error_decay(P, P0, pi_P, max_steps)
-    errors_Q = error_decay(Q, P0, pi_Q, max_steps)
-    results[label] = (errors_P, errors_Q)
+    convergence_P = convergence(P, P0, pi_P, max_steps)
+    convergence_Q = convergence(Q, P0, pi_Q, max_steps)
+    results[label] = (convergence_P, convergence_Q)
 
-# Plot results
-plt.figure(figsize=(10, 6))
 
-for label, (errors_P, errors_Q) in results.items():
-    plt.plot(errors_P, label=f"P - {label}", linestyle='-')
-    plt.plot(errors_Q, label=f"Q - {label}", linestyle='--')
+def plot_extra_initial_dist():
+    plt.figure(figsize=(10, 6))
 
-plt.xlabel("Steps (N)")
-plt.ylabel("L1 Error ||P^N P0 - π||")
-plt.yscale("log")  # Log scale for better visualization
-plt.legend()
-plt.title("Effect of Different Initial Distributions on Convergence")
-plt.show()
+    for label, (convergence_P, convergence_Q) in results.items():
+        plt.plot(convergence_P, label=f"P - {label}", linestyle='-')
+        plt.plot(convergence_Q, label=f"Q - {label}", linestyle='--')
 
+    plt.xlabel("Steps (N)")
+    plt.ylabel("L1 Error ||P^N P0 - π||")
+    plt.yscale("log")  # Log scale for better visualization
+    plt.legend()
+    plt.title("Effect of Different Initial Distributions on Convergence")
+    plt.show()
+
+plot_extra_initial_dist()
