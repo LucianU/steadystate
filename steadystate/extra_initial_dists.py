@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 
 from .transitions import P, Q
 
-from .convergence import convergence
-from .dist import get_stationary_dist
+from .convergence_tools import convergence
+from .dist_tools import get_stationary_dist
 
 
 # Compute stationary distributions
