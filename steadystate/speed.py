@@ -8,34 +8,34 @@ from .tools import decay_rate, eigen_speed, get_stationary_dist, error_decay
 P0 = np.array([0.5, 0.5])
 
 # Compute stationary distributions
-pi_P = get_stationary_dist(P)
-pi_Q = get_stationary_dist(Q)
+stationary_dist_P = get_stationary_dist(P)
+stationary_dist_Q = get_stationary_dist(Q)
 
 # Measure error decay
 max_steps = 500
 
 N_vals = np.arange(1, max_steps + 1)
 
-errors_P = error_decay(P, P0, pi_P, max_steps)
-errors_Q = error_decay(Q, P0, pi_Q, max_steps)
+errors_P = error_decay(P, P0, stationary_dist_P, max_steps)
+errors_Q = error_decay(Q, P0, stationary_dist_Q, max_steps)
 
-r_P = decay_rate(errors_P, N_vals)
-r_Q = decay_rate(errors_Q, N_vals)
+error_decay_rate_P = decay_rate(errors_P, N_vals)
+error_decay_rate_Q = decay_rate(errors_Q, N_vals)
 
-print(f"Convergence rate (r) for P: {r_P}")
-print(f"Convergence rate (r) for Q: {r_Q}")
+print(f"Convergence rate (r) for P: {error_decay_rate_P}")
+print(f"Convergence rate (r) for Q: {error_decay_rate_Q}")
 
 speed_P = eigen_speed(P)
 speed_Q = eigen_speed(Q)
 
-print(f"Speed estimate for P (1 - |λ2|): {speed_P}")
-print(f"Speed estimate for Q (1 - |λ2|): {speed_Q}")
+print(f"Eigenvalue speed estimate for P (1 - |λ2|): {speed_P}")
+print(f"Eigenvalue speed estimate for Q (1 - |λ2|): {speed_Q}")
 
 # Plot error decay
 def speed_plot():
     plt.figure(figsize=(8, 5))
-    plt.plot(N_vals, errors_P, label=f"Error for P (r={r_P:.3f})", marker='o')
-    plt.plot(N_vals, errors_Q, label=f"Error for Q (r={r_Q:.3f})", marker='x', linestyle='--')
+    plt.plot(N_vals, errors_P, label=f"Error for P (r={error_decay_rate_P:.3f})")
+    plt.plot(N_vals, errors_Q, label=f"Error for Q (r={error_decay_rate_Q:.3f})", linestyle='--')
     plt.xlabel("Steps (N)")
     plt.ylabel("L1 Error ||P^N P0 - π||")
     plt.yscale("log")  # Log scale for better visualization
