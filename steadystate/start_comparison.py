@@ -1,3 +1,7 @@
+"""
+Compare how different initial distributions evolve under the same transition matrices.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 
