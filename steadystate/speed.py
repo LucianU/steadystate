@@ -22,8 +22,8 @@ errors_Q = error_decay(Q, P0, pi_Q, max_steps)
 r_P = decay_rate(errors_P, N_vals)
 r_Q = decay_rate(errors_Q, N_vals)
 
-print(f"Convergence rate (r) for P: {1/abs(r_P)}")
-print(f"Convergence rate (r) for Q: {1/abs(r_Q)}")
+print(f"Convergence rate (r) for P: {r_P}")
+print(f"Convergence rate (r) for Q: {r_Q}")
 
 speed_P = eigen_speed(P)
 speed_Q = eigen_speed(Q)
