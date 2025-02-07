@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from .transitions import P, Q, R, S, A
-from .tools import get_stationary_dist
+from .dist_tools import get_stationary_dist
 
 # Initial state distribution
 P0 = np.array([0.5, 0.5])  # 50% probability of starting in each state
