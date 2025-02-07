@@ -17,7 +17,7 @@ pi_Q = get_stationary_dist(Q)
 
 # Define different initial distributions
 initial_distributions = {
-    "Uniform [0.5, 0.5]": np.array([0.5, 0.5]),
+    "Start in either State [0.5, 0.5]": np.array([0.5, 0.5]),
     "Start in State 0 [1, 0]": np.array([1, 0]),
     "Start in State 1 [0, 1]": np.array([0, 1]),
     "Close to π_P": pi_P,
