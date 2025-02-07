@@ -14,6 +14,12 @@ pi_R = get_stationary_dist(R)
 pi_S = get_stationary_dist(S)
 pi_A = get_stationary_dist(A)
 
+print(f"Stationary Dist of P: {pi_P}")
+print(f"Stationary Dist of Q: {pi_Q}")
+print(f"Stationary Dist of R: {pi_R}")
+print(f"Stationary Dist of S: {pi_S}")
+print(f"Stationary Dist of A: {pi_A}")
+
 # Add new matrices to the analysis
 additional_matrices = {
     "R (Slow Convergence)": (R, pi_R),
