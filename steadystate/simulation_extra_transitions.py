@@ -42,18 +42,22 @@ errors_S = [compute_error(simulated_S[:i], stationary_dist_S) for i in range(1, 
 errors_A = [compute_error(simulated_A[:i], stationary_dist_A) for i in range(1, N+1)]
 
 
-def plot_simulation_extra():
+def plot_simulation_extra(log=False):
     plt.figure(figsize=(8, 5))
     plt.plot(errors_P, label="Simulated errors for P")
     plt.plot(errors_Q, label="Simulated errors for Q")
     plt.plot(errors_R, label="Simulated errors for R")
     plt.plot(errors_S, label="Simulated errors for S")
     plt.plot(errors_A, label="Simulated errors for A")
-    plt.yscale("log")  # Log scale for better visualization
+    if log:
+        plt.yscale("log")  # Log scale for better visualization
     plt.xlabel("Steps")
     plt.ylabel("L1 Error ||Distribution - π||")
     plt.legend()
-    plt.title("Error of Convergent Markov Chain (Decreasing Error)")
+    title = "Error of Convergent Markov Chain"
+    if log:
+        title = f"{title} (Decreasing)"
+    plt.title(title)
     plt.show()
 
 plot_simulation_extra()

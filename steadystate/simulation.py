@@ -35,16 +35,20 @@ errors_P = [compute_error(simulated_P[:i], stationary_dist_P) for i in range(1, 
 errors_Q = [compute_error(simulated_Q[:i], stationary_dist_Q) for i in range(1, N+1)]
 
 
-def plot_simulation_error():
+def plot_simulation(log=False):
     plt.figure(figsize=(8, 5))
     plt.plot(errors_P, label="Simulated errors for P")
     plt.plot(errors_Q, label="Simulated errors for Q")
-    plt.yscale("log")  # Log scale for better visualization
+    if log:
+        plt.yscale("log")  # Log scale for better visualization
     plt.xlabel("Steps")
     plt.ylabel("L1 Error ||Distribution - π||")
     plt.legend()
-    plt.title("Error of Convergent Markov Chain (Decreasing Error)")
+    title = "Error of Convergent Markov Chain"
+    if log:
+        title = f"{title} (Decreasing)"
+    plt.title(title)
     plt.show()
 
-plot_simulation_error()
+plot_simulation()
 
