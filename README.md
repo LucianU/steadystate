@@ -1,40 +1,42 @@
-# steadystate
-A small project that analyzes the convergence of several Markov Chains.
+# SteadyState
+A small project that analyzes the **convergence of several Markov Chains**.
 
-We first look at 2 chains with significantly different transition matrices
-[`convergence.py`].
-Then, we add 3 more chains also with peculiar matrices and see how they converge
-to their stationary distribution [`extra_transitions.py`].
+## Overview
+- We first examine **two Markov Chains** with significantly different transition
+matrices in [`convergence.py`](steadystate/convergence.py).
+- Then, we extend the analysis to **three additional chains** with distinct
+behaviors in [`extra_transitions.py`](steadystate/extra_transitions.py).
+- We compare how **different initial distributions** affect convergence in
+[`extra_initial_dists.py`](steadystate/extra_initial_dists.py).
+- Finally, we **simulate** Markov Chains step by step to observe empirical
+behavior in [`simulation.py`](steadystate/simulation.py).
 
-As a bonus, we also compare the performance of the same transition matrices on
-different initial distributions[`extra_initial_dists.py`].
+This project is part of my **Bayesian Networks and Hidden Markov Models** class.
 
-Finally, we perform simulations with the same matrices to see how things look
-empirically[`simulation.py`].
+Built together with my colleague **Mara Fodor**.
 
-Part of my class in Bayesian Networks and Hidden Markov Models.
+---
 
-Built together with my colleague Mara Fodor.
-
-
-# Setup
-## Poetry (Recommended)
+## **Setup**
+### **Poetry (Recommended)**
 The project uses [Poetry](https://python-poetry.org/) for dependency management.
 
 After installing Poetry:
 
-- install project dependencies:
+1. **Install project dependencies:**
+   ```sh
+   poetry install
+   ```
 
-        poetry install
+2. **Activate the project environment:**
+   ```sh
+   poetry shell
+   ```
 
-- activate the project environment:
-
-        poetry shell
-
-- run the different files:
-
-        python -m steadystate.convergence
-        python -m steadystate.extra_transitions
-        python -m steadystate.extra_initial_dists
-        python -m steadystate.simulation
-
+3. **Run the different scripts:**
+   ```sh
+   python -m steadystate.convergence
+   python -m steadystate.extra_transitions
+   python -m steadystate.extra_initial_dists
+   python -m steadystate.simulation
+   ```
